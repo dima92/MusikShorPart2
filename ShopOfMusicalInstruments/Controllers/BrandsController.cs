@@ -7,7 +7,7 @@ using DAL.Core.ModelDTO;
 
 namespace ShopOfMusicalInstruments.Core.Controllers
 {
-    public class BrandsController : ApiController
+    public class BrandsController : ApiController  
     {
         private IBLLFactory _bllFactory;
 
