@@ -18,9 +18,9 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlBrendModalMindow.html";
                 },
-                size: 'lg',
+                size: "lg",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
                         $scope.gridBrands = {
                             enableColumnResizing: true,
                             showGridFooter: true,
@@ -37,19 +37,19 @@
                             rowHeight: 22,
                             columnDefs: [
                                 {
-                                    field: 'Name',
-                                    width: '50%',
-                                    displayName: 'Название',
+                                    field: "Name",
+                                    width: "50%",
+                                    displayName: "Название",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                                 },
                                 {
-                                    field: 'Description',
-                                    width: '45%',
-                                    displayName: 'Описание',
+                                    field: "Description",
+                                    width: "45%",
+                                    displayName: "Описание",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 },
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -99,7 +99,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         //открытие блока для добавления бренда
@@ -157,11 +157,11 @@
 
             $uibModal.open({
                 templateUrl: function () {
-                    return 'Angular/ModalWindows/ControlCountryModalWindow.html';
+                    return "Angular/ModalWindows/ControlCountryModalWindow.html";
                 },
-                size: 'lg',
+                size: "lg",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
 
                         $scope.country = { Name: "", Description: "" };
                         $scope.gridCountries = {
@@ -180,19 +180,19 @@
                             rowHeight: 22,
                             columnDefs: [
                                 {
-                                    field: 'Name',
-                                    width: '50%',
-                                    displayName: 'Название',
+                                    field: "Name",
+                                    width: "50%",
+                                    displayName: "Название",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                                 },
                                 {
-                                    field: 'Description',
-                                    width: '45%',
-                                    displayName: 'Описание',
+                                    field: "Description",
+                                    width: "45%",
+                                    displayName: "Описание",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 },
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -239,7 +239,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
 
@@ -301,11 +301,11 @@
 
             $uibModal.open({
                 templateUrl: function () {
-                    return 'Angular/ModalWindows/ControlNumberStringModalWindow.html';
+                    return "Angular/ModalWindows/ControlNumberStringModalWindow.html";
                 },
-                size: 'md',
+                size: "md",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
 
                         $scope.numberStr = { Number: "" };
                         $scope.gridNumberStrings = {
@@ -325,13 +325,13 @@
                             columnDefs: [
 
                                 {
-                                    field: 'Number',
-                                    width: '70%',
-                                    displayName: 'Номер',
+                                    field: "Number",
+                                    width: "70%",
+                                    displayName: "Номер",
                                     cellTemplate: '<p style="margin-left:80px;" >{{row.entity.Number}}</p>'
                                 },
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -367,7 +367,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         //удаление струн
@@ -382,7 +382,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
 
@@ -446,9 +446,9 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlSubcategoryModalWindows.html";
                 },
-                size: 'lg',
+                size: "lg",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
 
                         $scope.subcategory = { Name: "", Description: "", IDcategory: "" };
                         $scope.gridSubcategories = {
@@ -467,26 +467,26 @@
                             rowHeight: 22,
                             columnDefs: [
                                 {
-                                    field: 'Name',
+                                    field: "Name",
                                     width: "30%",
                                     displayName: "Подкатегория",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Name}}</p>'
                                 },
                                 {
-                                    field: 'Description',
+                                    field: "Description",
                                     width: "30%",
-                                    displayName: 'Описание подкатегории',
+                                    displayName: "Описание подкатегории",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 },
                                 {
-                                    field: 'Category',
+                                    field: "Category",
                                     width: "30%",
                                     displayName: "Категория",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Category.Name}}</p>'
                                 },
 
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -522,7 +522,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         //удаление подкатегорий
@@ -537,7 +537,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
 
@@ -604,10 +604,10 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
                 },
-                size: 'md',
+                size: "md",
                 scope: $scope,
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
                         $rootScope.loadingShow();
 
                         adminService.getAll().then(function (value) {
@@ -646,7 +646,7 @@
                                 $rootScope.loadingHide();
                             });
 
-                        $scope.$watch('Product.CategoryId',
+                        $scope.$watch("Product.CategoryId",
                             function (newValue, oldValue) {
                                 if (newValue !== undefined) {
                                     subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
@@ -677,7 +677,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         $scope.cancelWindow = function () {
@@ -704,9 +704,9 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlProductModalWindow.html";
                 },
-                size: 'lg',
+                size: "lg",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', "toaster", function ($rootScope, $scope, $uibModalInstance, toaster) {
+                    "$rootScope", "$scope", "$uibModalInstance", "toaster", function ($rootScope, $scope, $uibModalInstance, toaster) {
 
                         $scope.product = {
                             Name: "",
@@ -733,63 +733,63 @@
                             multiSelect: false,
                             columnDefs: [
                                 {
-                                    field: 'Brand.Name',
+                                    field: "Brand.Name",
                                     width: "10%",
-                                    displayName: 'Бренд',
+                                    displayName: "Бренд",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Brand.Name}}</p>'
                                 },
                                 {
-                                    field: 'Name',
+                                    field: "Name",
                                     width: "10%",
                                     displayName: "Название инструмента",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                                 },
                                 {
-                                    field: 'Window',
+                                    field: "Window",
                                     width: "7%",
                                     enableCellEdit: false,
-                                    displayName: 'Витрина',
-                                    cellTemplate: 'Angular/Templates/WindowCheckBox.html'
+                                    displayName: "Витрина",
+                                    cellTemplate: "Angular/Templates/WindowCheckBox.html"
                                 },
                                 {
-                                    field: 'Country.Name',
+                                    field: "Country.Name",
                                     width: "10%",
-                                    displayName: 'Страна',
+                                    displayName: "Страна",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Country.Name}}</p>'
                                 },
                                 {
-                                    field: 'Subcategory.Name',
+                                    field: "Subcategory.Name",
                                     width: "13%",
                                     displayName: "Подкатегория",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Name}}</p>'
                                 },
                                 {
-                                    field: 'Subcategory.Category.Name',
+                                    field: "Subcategory.Category.Name",
                                     width: "10%",
                                     displayName: "Категория",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Category.Name}}</p>'
                                 },
                                 {
-                                    field: 'Price',
+                                    field: "Price",
                                     width: "10%",
-                                    displayName: 'Цена',
+                                    displayName: "Цена",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Price}}</p>'
                                 },
                                 {
-                                    field: 'NumberProduct',
+                                    field: "NumberProduct",
                                     width: "10%",
-                                    displayName: 'Количество на складе',
-                                    cellTemplate: 'Angular/Templates/isCheckNotZero.html'
+                                    displayName: "Количество на складе",
+                                    cellTemplate: "Angular/Templates/isCheckNotZero.html"
                                 },
                                 {
-                                    field: 'DateManufacture',
+                                    field: "DateManufacture",
                                     width: "15%",
-                                    displayName: 'Дата выпуска',
+                                    displayName: "Дата выпуска",
                                     cellTemplate:
                                         "<p style='margin-left:15px;'>{{row.entity.DateManufacture | date:'MM/dd/yyyy'}}</p>"
                                 },
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -815,8 +815,13 @@
                             var entity = row.entity;
                             if (entity.NumberProduct === 0) {
                                 entity.Window = false;
+                                $rootScope.toaster("warning",
+                                    "Не возможно установить товар" + " " + row.entity.Brand.Name + " " + row.entity.Name + " " + "на витрину, т.к его нет на складе", 3000);
                             }
-                            $rootScope.toaster('warning', 'Не возможно установить товар' +' ' + row.entity.Brand.Name + ' ' + row.entity.Name + ' ' + 'на витрину, т.к его нет на складе',7000);
+                            else {
+                                ($rootScope.toaster("success",
+                                    "Товар" + " " + row.entity.Brand.Name + " " + row.entity.Name + " " + "успешно добавлен", 3000));
+                            }
                         }
 
                         //запрос на список продуктов
@@ -834,14 +839,14 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         //Редактирование продуктов
                         $scope.SaveEdit = function () {
                             productService.edit($scope.gridProducts.data).then(function () {
                                 getAllProducts();
-                                $rootScope.toaster('success', 'Данные успешно изменены', 2500);
+                                $rootScope.toaster("success", "Данные успешно изменены", 2500);
                             },
                                 function (errorObject) {
 
@@ -853,7 +858,7 @@
                         $scope.deleteProduct = function (productId) {
                             productService.delete(productId).then(function () {
                                 getAllProducts();
-                                $rootScope.toaster('success', 'Данные успешно удалены', 2500);
+                                $rootScope.toaster("success", "Данные успешно удалены", 2500);
                             },
                                 function (errorObject) {
 
@@ -888,9 +893,9 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlCategoryModalWindow.html";
                 },
-                size: 'md',
+                size: "md",
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    "$rootScope", "$scope", "$uibModalInstance", function ($rootScope, $scope, $uibModalInstance) {
 
                         $scope.category = {};
                         $scope.gridCategories = {
@@ -910,14 +915,14 @@
                             columnDefs: [
 
                                 {
-                                    field: 'Name',
+                                    field: "Name",
                                     width: "92%",
                                     displayName: "Категория"
 
                                 },
 
                                 {
-                                    field: 'buttons_edit_del',
+                                    field: "buttons_edit_del",
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
@@ -953,7 +958,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
                         //удаление категорий
@@ -968,7 +973,7 @@
                         }
 
                         $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                            $uibModalInstance.dismiss({ $value: "cancel" });
                         };
 
 
@@ -1021,7 +1026,7 @@
     angular
         .module("Web.Controllers")
         .controller("adminController",
-        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", 'numberstringService', "subcategoryService", "productService", "categoryService", adminController]);
+        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", "numberstringService", "subcategoryService", "productService", "categoryService", adminController]);
 
 })();
 

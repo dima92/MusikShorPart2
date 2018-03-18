@@ -6,10 +6,10 @@
  */
 
 
-angular.module('ui.config', []).value('ui.config', {});
-angular.module('ui.filters', ['ui.config']);
-angular.module('ui.directives', ['ui.config']);
-angular.module('ui', ['ui.filters', 'ui.directives', 'ui.config']);
+angular.module("ui.config", []).value("ui.config", {});
+angular.module("ui.filters", ["ui.config"]);
+angular.module("ui.directives", ["ui.config"]);
+angular.module("ui", ["ui.filters", "ui.directives", "ui.config"]);
 
 /**
  * Animates the injection of new DOM elements by simply creating the DOM with a class and then immediately removing it
@@ -20,15 +20,15 @@ angular.module('ui', ['ui.filters', 'ui.directives', 'ui.config']);
  *    class {string} the CSS class(es) to use. For example, 'ui-hide' might be an excellent alternative class.
  * @example <li ng-repeat="item in items" ui-animate=" 'ui-hide' ">{{item}}</li>
  */
-angular.module('ui.directives').directive('uiAnimate', ['ui.config', '$timeout', function (uiConfig, $timeout) {
+angular.module("ui.directives").directive("uiAnimate", ["ui.config", "$timeout", function (uiConfig, $timeout) {
   var options = {};
   if (angular.isString(uiConfig.animate)) {
-    options['class'] = uiConfig.animate;
+    options["class"] = uiConfig.animate;
   } else if (uiConfig.animate) {
     options = uiConfig.animate;
   }
   return {
-    restrict: 'A', // supports using directive as element, attribute and class
+    restrict: "A", // supports using directive as element, attribute and class
     link: function ($scope, element, attrs) {
       var opts = {};
       if (attrs.uiAnimate) {
@@ -37,11 +37,11 @@ angular.module('ui.directives').directive('uiAnimate', ['ui.config', '$timeout',
           opts = {'class': opts};
         }
       }
-      opts = angular.extend({'class': 'ui-animate'}, options, opts);
+      opts = angular.extend({'class': "ui-animate"}, options, opts);
 
-      element.addClass(opts['class']);
+      element.addClass(opts["class"]);
       $timeout(function () {
-        element.removeClass(opts['class']);
+        element.removeClass(opts["class"]);
       }, 20, false);
     }
   };
@@ -59,12 +59,12 @@ angular.module('ui.directives').directive('uiAnimate', ['ui.config', '$timeout',
 *
 */
 
-angular.module('ui.directives').directive('uiCalendar',['ui.config', '$parse', function (uiConfig,$parse) {
+angular.module("ui.directives").directive("uiCalendar",["ui.config", "$parse", function (uiConfig,$parse) {
      uiConfig.uiCalendar = uiConfig.uiCalendar || {};       
      //returns calendar     
      return {
-        require: 'ngModel',
-        restrict: 'A',
+        require: "ngModel",
+        restrict: "A",
           link: function(scope, elm, attrs, $timeout) {
             var sources = scope.$eval(attrs.ngModel);
             var tracker = 0;
@@ -86,8 +86,8 @@ angular.module('ui.directives').directive('uiCalendar',['ui.config', '$parse', f
             /* update the calendar with the correct options */
             function update() {
               //calendar object exposed on scope
-              scope.calendar = elm.html('');
-              var view = scope.calendar.fullCalendar('getView');
+              scope.calendar = elm.html("");
+              var view = scope.calendar.fullCalendar("getView");
               if(view){
                 view = view.name; //setting the default view to be whatever the current view is. This can be overwritten. 
               }
@@ -118,18 +118,18 @@ angular.module('ui.directives').directive('uiCalendar',['ui.config', '$parse', f
 /**
  * Binds a CodeMirror widget to a <textarea> element.
  */
-angular.module('ui.directives').directive('uiCodemirror', ['ui.config', '$timeout', function (uiConfig, $timeout) {
-	'use strict';
+angular.module("ui.directives").directive("uiCodemirror", ["ui.config", "$timeout", function (uiConfig, $timeout) {
+	"use strict";
 
 	var events = ["cursorActivity", "viewportChange", "gutterClick", "focus", "blur", "scroll", "update"];
 	return {
-		restrict:'A',
-		require:'ngModel',
+		restrict:"A",
+		require:"ngModel",
 		link:function (scope, elm, attrs, ngModel) {
 			var options, opts, onChange, deferCodeMirror, codeMirror;
 
-			if (elm[0].type !== 'textarea') {
-				throw new Error('uiCodemirror3 can only be applied to a textarea element');
+			if (elm[0].type !== "textarea") {
+				throw new Error("uiCodemirror3 can only be applied to a textarea element");
 			}
 
 			options = uiConfig.codemirror || {};
@@ -162,10 +162,10 @@ angular.module('ui.directives').directive('uiCodemirror', ['ui.config', '$timeou
 				// This does not change the model.
 				ngModel.$formatters.push(function (value) {
 					if (angular.isUndefined(value) || value === null) {
-						return '';
+						return "";
 					}
 					else if (angular.isObject(value) || angular.isArray(value)) {
-						throw new Error('ui-codemirror cannot use an object or an array as a model');
+						throw new Error("ui-codemirror cannot use an object or an array as a model");
 					}
 					return value;
 				});
@@ -195,18 +195,18 @@ angular.module('ui.directives').directive('uiCodemirror', ['ui.config', '$timeou
 /*
  Gives the ability to style currency based on its sign.
  */
-angular.module('ui.directives').directive('uiCurrency', ['ui.config', 'currencyFilter' , function (uiConfig, currencyFilter) {
+angular.module("ui.directives").directive("uiCurrency", ["ui.config", "currencyFilter" , function (uiConfig, currencyFilter) {
   var options = {
-    pos: 'ui-currency-pos',
-    neg: 'ui-currency-neg',
-    zero: 'ui-currency-zero'
+    pos: "ui-currency-pos",
+    neg: "ui-currency-neg",
+    zero: "ui-currency-zero"
   };
   if (uiConfig.currency) {
     angular.extend(options, uiConfig.currency);
   }
   return {
-    restrict: 'EAC',
-    require: 'ngModel',
+    restrict: "EAC",
+    require: "ngModel",
     link: function (scope, element, attrs, controller) {
       var opts, // instance-specific options
         renderview,
@@ -220,8 +220,8 @@ angular.module('ui.directives').directive('uiCurrency', ['ui.config', 'currencyF
         element.toggleClass(opts.pos, (num > 0) );
         element.toggleClass(opts.neg, (num < 0) );
         element.toggleClass(opts.zero, (num === 0) );
-        if (viewvalue === '') {
-          element.text('');
+        if (viewvalue === "") {
+          element.text("");
         } else {
           element.text(currencyFilter(num, opts.symbol));
         }
@@ -246,17 +246,17 @@ angular.module('ui.directives').directive('uiCurrency', ['ui.config', 'currencyF
  @param [ui-date] {object} Options to pass to $.fn.datepicker() merged onto ui.config
  */
 
-angular.module('ui.directives')
+angular.module("ui.directives")
 
-.directive('uiDate', ['ui.config', function (uiConfig) {
-  'use strict';
+.directive("uiDate", ["ui.config", function (uiConfig) {
+  "use strict";
   var options;
   options = {};
   if (angular.isObject(uiConfig.date)) {
     angular.extend(options, uiConfig.date);
   }
   return {
-    require:'?ngModel',
+    require:"?ngModel",
     link:function (scope, element, attrs, controller) {
       var getOptions = function () {
         return angular.extend({}, uiConfig.date, scope.$eval(attrs.uiDate));
@@ -288,19 +288,19 @@ angular.module('ui.directives')
             opts.onSelect = updateModel;
           }
           // In case the user changes the text directly in the input box
-          element.bind('change', updateModel);
+          element.bind("change", updateModel);
 
           // Update the date picker when the model changes
           controller.$render = function () {
             var date = controller.$viewValue;
             if ( angular.isDefined(date) && date !== null && !angular.isDate(date) ) {
-              throw new Error('ng-Model value must be a Date object - currently it is a ' + typeof date + ' - use ui-date-format to convert it from a string');
+              throw new Error("ng-Model value must be a Date object - currently it is a " + typeof date + " - use ui-date-format to convert it from a string");
             }
             element.datepicker("setDate", date);
           };
         }
         // If we don't destroy the old one it doesn't update properly when the config changes
-        element.datepicker('destroy');
+        element.datepicker("destroy");
         // Create the new datepicker widget
         element.datepicker(opts);
         if ( controller ) {
@@ -315,9 +315,9 @@ angular.module('ui.directives')
 }
 ])
 
-.directive('uiDateFormat', ['ui.config', function(uiConfig) {
+.directive("uiDateFormat", ["ui.config", function(uiConfig) {
   var directive = {
-    require:'ngModel',
+    require:"ngModel",
     link: function(scope, element, attrs, modelCtrl) {
       var dateFormat = attrs.uiDateFormat || uiConfig.dateFormat;
       if ( dateFormat ) {
@@ -360,7 +360,7 @@ angular.module('ui.directives')
  *
  * @param ui-event {string|object literal} The event to bind to as a string or a hash of events with their callbacks
  */
-angular.module('ui.directives').directive('uiEvent', ['$parse',
+angular.module("ui.directives").directive("uiEvent", ["$parse",
   function ($parse) {
     return function (scope, elm, attrs) {
       var events = scope.$eval(attrs.uiEvent);
@@ -383,19 +383,19 @@ angular.module('ui.directives').directive('uiEvent', ['$parse',
  * Originally created by @tigbro, for the @jquery-mobile-angular-adapter
  * https://github.com/tigbro/jquery-mobile-angular-adapter
  */
-angular.module('ui.directives').directive('uiIf', [function () {
+angular.module("ui.directives").directive("uiIf", [function () {
   return {
-    transclude: 'element',
+    transclude: "element",
     priority: 1000,
     terminal: true,
-    restrict: 'A',
+    restrict: "A",
     compile: function (element, attr, transclude) {
       return function (scope, element, attr) {
 
         var childElement;
         var childScope;
  
-        scope.$watch(attr['uiIf'], function (newValue) {
+        scope.$watch(attr["uiIf"], function (newValue) {
           if (childElement) {
             childElement.remove();
             childElement = undefined;
@@ -432,10 +432,10 @@ angular.module('ui.directives').directive('uiIf', [function () {
  *
  * @example <input ui-jq="datepicker" ui-options="{showOn:'click'},secondParameter,thirdParameter" ui-refresh="iChange">
  */
-angular.module('ui.directives').directive('uiJq', ['ui.config', '$timeout', function uiJqInjectingFunction(uiConfig, $timeout) {
+angular.module("ui.directives").directive("uiJq", ["ui.config", "$timeout", function uiJqInjectingFunction(uiConfig, $timeout) {
 
   return {
-    restrict: 'A',
+    restrict: "A",
     compile: function uiJqCompilingFunction(tElm, tAttrs) {
 
       if (!angular.isFunction(tElm[tAttrs.uiJq])) {
@@ -449,7 +449,7 @@ angular.module('ui.directives').directive('uiJq', ['ui.config', '$timeout', func
 
         // If ui-options are passed, merge (or override) them onto global defaults and pass to the jQuery method
         if (attrs.uiOptions) {
-          linkOptions = scope.$eval('[' + attrs.uiOptions + ']');
+          linkOptions = scope.$eval("[" + attrs.uiOptions + "]");
           if (angular.isObject(options) && angular.isObject(linkOptions[0])) {
             linkOptions[0] = angular.extend({}, options, linkOptions[0]);
           }
@@ -457,9 +457,9 @@ angular.module('ui.directives').directive('uiJq', ['ui.config', '$timeout', func
           linkOptions = [options];
         }
         // If change compatibility is enabled, the form input's "change" event will trigger an "input" event
-        if (attrs.ngModel && elm.is('select,input,textarea')) {
-          elm.on('change', function() {
-            elm.trigger('input');
+        if (attrs.ngModel && elm.is("select,input,textarea")) {
+          elm.on("change", function() {
+            elm.trigger("input");
           });
         }
 
@@ -482,23 +482,23 @@ angular.module('ui.directives').directive('uiJq', ['ui.config', '$timeout', func
   };
 }]);
 
-angular.module('ui.directives').factory('keypressHelper', ['$parse', function keypress($parse){
+angular.module("ui.directives").factory("keypressHelper", ["$parse", function keypress($parse){
   var keysByCode = {
-    8: 'backspace',
-    9: 'tab',
-    13: 'enter',
-    27: 'esc',
-    32: 'space',
-    33: 'pageup',
-    34: 'pagedown',
-    35: 'end',
-    36: 'home',
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    45: 'insert',
-    46: 'delete'
+    8: "backspace",
+    9: "tab",
+    13: "enter",
+    27: "esc",
+    32: "space",
+    33: "pageup",
+    34: "pagedown",
+    35: "end",
+    36: "home",
+    37: "left",
+    38: "up",
+    39: "right",
+    40: "down",
+    45: "insert",
+    46: "delete"
   };
 
   var capitaliseFirstLetter = function (string) {
@@ -507,19 +507,19 @@ angular.module('ui.directives').factory('keypressHelper', ['$parse', function ke
 
   return function(mode, scope, elm, attrs) {
     var params, combinations = [];
-    params = scope.$eval(attrs['ui'+capitaliseFirstLetter(mode)]);
+    params = scope.$eval(attrs["ui"+capitaliseFirstLetter(mode)]);
 
     // Prepare combinations for simple checking
     angular.forEach(params, function (v, k) {
       var combination, expression;
       expression = $parse(v);
 
-      angular.forEach(k.split(' '), function(variation) {
+      angular.forEach(k.split(" "), function(variation) {
         combination = {
           expression: expression,
           keys: {}
         };
-        angular.forEach(variation.split('-'), function (value) {
+        angular.forEach(variation.split("-"), function (value) {
           combination.keys[value] = true;
         });
         combinations.push(combination);
@@ -535,7 +535,7 @@ angular.module('ui.directives').factory('keypressHelper', ['$parse', function ke
       var keyCode = event.keyCode;
 
       // normalize keycodes
-      if (mode === 'keypress' && !shiftPressed && keyCode >= 97 && keyCode <= 122) {
+      if (mode === "keypress" && !shiftPressed && keyCode >= 97 && keyCode <= 122) {
         keyCode = keyCode - 32;
       }
 
@@ -569,39 +569,39 @@ angular.module('ui.directives').factory('keypressHelper', ['$parse', function ke
  * @param hash {mixed} keyBindings Can be an object or string where keybinding expression of keys or keys combinations and AngularJS Exspressions are set. Object syntax: "{ keys1: expression1 [, keys2: expression2 [ , ... ]]}". String syntax: ""expression1 on keys1 [ and expression2 on keys2 [ and ... ]]"". Expression is an AngularJS Expression, and key(s) are dash-separated combinations of keys and modifiers (one or many, if any. Order does not matter). Supported modifiers are 'ctrl', 'shift', 'alt' and key can be used either via its keyCode (13 for Return) or name. Named keys are 'backspace', 'tab', 'enter', 'esc', 'space', 'pageup', 'pagedown', 'end', 'home', 'left', 'up', 'right', 'down', 'insert', 'delete'.
  * @example <input ui-keypress="{enter:'x = 1', 'ctrl-shift-space':'foo()', 'shift-13':'bar()'}" /> <input ui-keypress="foo = 2 on ctrl-13 and bar('hello') on shift-esc" />
  **/
-angular.module('ui.directives').directive('uiKeydown', ['keypressHelper', function(keypressHelper){
+angular.module("ui.directives").directive("uiKeydown", ["keypressHelper", function(keypressHelper){
   return {
     link: function (scope, elm, attrs) {
-      keypressHelper('keydown', scope, elm, attrs);
+      keypressHelper("keydown", scope, elm, attrs);
     }
   };
 }]);
 
-angular.module('ui.directives').directive('uiKeypress', ['keypressHelper', function(keypressHelper){
+angular.module("ui.directives").directive("uiKeypress", ["keypressHelper", function(keypressHelper){
   return {
     link: function (scope, elm, attrs) {
-      keypressHelper('keypress', scope, elm, attrs);
+      keypressHelper("keypress", scope, elm, attrs);
     }
   };
 }]);
 
-angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function(keypressHelper){
+angular.module("ui.directives").directive("uiKeyup", ["keypressHelper", function(keypressHelper){
   return {
     link: function (scope, elm, attrs) {
-      keypressHelper('keyup', scope, elm, attrs);
+      keypressHelper("keyup", scope, elm, attrs);
     }
   };
 }]);
 (function () {
-  var app = angular.module('ui.directives');
+  var app = angular.module("ui.directives");
 
   //Setup map events from a google map object to trigger on a given element too,
   //then we just use ui-event to catch events from an element
   function bindMapEvents(scope, eventsStr, googleObject, element) {
-    angular.forEach(eventsStr.split(' '), function (eventName) {
+    angular.forEach(eventsStr.split(" "), function (eventName) {
       //Prefix all googlemap events with 'map-', so eg 'click' 
       //for the googlemap doesn't interfere with a normal 'click' event
-      var $event = { type: 'map-' + eventName };
+      var $event = { type: "map-" + eventName };
       google.maps.event.addListener(googleObject, eventName, function (evt) {
         element.triggerHandler(angular.extend({}, $event, evt));
         //We create an $apply if it isn't happening. we need better support for this
@@ -612,17 +612,17 @@ angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function
     });
   }
 
-  app.directive('uiMap',
-    ['ui.config', '$parse', function (uiConfig, $parse) {
+  app.directive("uiMap",
+    ["ui.config", "$parse", function (uiConfig, $parse) {
 
-      var mapEvents = 'bounds_changed center_changed click dblclick drag dragend ' +
-        'dragstart heading_changed idle maptypeid_changed mousemove mouseout ' +
-        'mouseover projection_changed resize rightclick tilesloaded tilt_changed ' +
-        'zoom_changed';
+      var mapEvents = "bounds_changed center_changed click dblclick drag dragend " +
+        "dragstart heading_changed idle maptypeid_changed mousemove mouseout " +
+        "mouseover projection_changed resize rightclick tilesloaded tilt_changed " +
+        "zoom_changed";
       var options = uiConfig.map || {};
 
       return {
-        restrict: 'A',
+        restrict: "A",
         //doesn't work as E for unknown reason
         link: function (scope, elm, attrs) {
           var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
@@ -637,11 +637,11 @@ angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function
       };
     }]);
 
-  app.directive('uiMapInfoWindow',
-    ['ui.config', '$parse', '$compile', function (uiConfig, $parse, $compile) {
+  app.directive("uiMapInfoWindow",
+    ["ui.config", "$parse", "$compile", function (uiConfig, $parse, $compile) {
 
-      var infoWindowEvents = 'closeclick content_change domready ' +
-        'position_changed zindex_changed';
+      var infoWindowEvents = "closeclick content_change domready " +
+        "position_changed zindex_changed";
       var options = uiConfig.mapInfoWindow || {};
 
       return {
@@ -662,7 +662,7 @@ angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function
            google maps has them stored.  So we just replace the infowindow element
            with an empty div. (we don't just straight remove it from the dom because
            straight removing things from the dom can mess up angular) */
-          elm.replaceWith('<div></div>');
+          elm.replaceWith("<div></div>");
 
           //Decorate infoWindow.open to $compile contents before opening
           var _open = infoWindow.open;
@@ -683,7 +683,7 @@ angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function
   function mapOverlayDirective(directiveName, events) {
     app.directive(directiveName, [function () {
       return {
-        restrict: 'A',
+        restrict: "A",
         link: function (scope, elm, attrs) {
           scope.$watch(attrs[directiveName], function (newObject) {
             bindMapEvents(scope, events, newObject, elm);
@@ -693,43 +693,43 @@ angular.module('ui.directives').directive('uiKeyup', ['keypressHelper', function
     }]);
   }
 
-  mapOverlayDirective('uiMapMarker',
-    'animation_changed click clickable_changed cursor_changed ' +
-      'dblclick drag dragend draggable_changed dragstart flat_changed icon_changed ' +
-      'mousedown mouseout mouseover mouseup position_changed rightclick ' +
-      'shadow_changed shape_changed title_changed visible_changed zindex_changed');
+  mapOverlayDirective("uiMapMarker",
+    "animation_changed click clickable_changed cursor_changed " +
+      "dblclick drag dragend draggable_changed dragstart flat_changed icon_changed " +
+      "mousedown mouseout mouseover mouseup position_changed rightclick " +
+      "shadow_changed shape_changed title_changed visible_changed zindex_changed");
 
-  mapOverlayDirective('uiMapPolyline',
-    'click dblclick mousedown mousemove mouseout mouseover mouseup rightclick');
+  mapOverlayDirective("uiMapPolyline",
+    "click dblclick mousedown mousemove mouseout mouseover mouseup rightclick");
 
-  mapOverlayDirective('uiMapPolygon',
-    'click dblclick mousedown mousemove mouseout mouseover mouseup rightclick');
+  mapOverlayDirective("uiMapPolygon",
+    "click dblclick mousedown mousemove mouseout mouseover mouseup rightclick");
 
-  mapOverlayDirective('uiMapRectangle',
-    'bounds_changed click dblclick mousedown mousemove mouseout mouseover ' +
-      'mouseup rightclick');
+  mapOverlayDirective("uiMapRectangle",
+    "bounds_changed click dblclick mousedown mousemove mouseout mouseover " +
+      "mouseup rightclick");
 
-  mapOverlayDirective('uiMapCircle',
-    'center_changed click dblclick mousedown mousemove ' +
-      'mouseout mouseover mouseup radius_changed rightclick');
+  mapOverlayDirective("uiMapCircle",
+    "center_changed click dblclick mousedown mousemove " +
+      "mouseout mouseover mouseup radius_changed rightclick");
 
-  mapOverlayDirective('uiMapGroundOverlay',
-    'click dblclick');
+  mapOverlayDirective("uiMapGroundOverlay",
+    "click dblclick");
 
 })();
 /*
  Attaches jquery-ui input mask onto input element
  */
-angular.module('ui.directives').directive('uiMask', [
+angular.module("ui.directives").directive("uiMask", [
   function () {
     return {
-      require:'ngModel',
+      require:"ngModel",
       link:function ($scope, element, attrs, controller) {
 
         /* We override the render method to run the jQuery mask plugin
          */
         controller.$render = function () {
-          var value = controller.$viewValue || '';
+          var value = controller.$viewValue || "";
           element.val(value);
           element.mask($scope.$eval(attrs.uiMask));
         };
@@ -740,13 +740,13 @@ angular.module('ui.directives').directive('uiMask', [
           //the second check (or) is only needed due to the fact that element.isMaskValid() will keep returning undefined
           //until there was at least one key event
           var isValid = element.isMaskValid() || angular.isUndefined(element.isMaskValid()) && element.val().length>0;
-          controller.$setValidity('mask', isValid);
+          controller.$setValidity("mask", isValid);
           return isValid ? value : undefined;
         });
 
         /* When keyup, update the view value
          */
-        element.bind('keyup', function () {
+        element.bind("keyup", function () {
           $scope.$apply(function () {
             controller.$setViewValue(element.mask());
           });
@@ -759,17 +759,17 @@ angular.module('ui.directives').directive('uiMask', [
 /**
  * Add a clear button to form inputs to reset their value
  */
-angular.module('ui.directives').directive('uiReset', ['ui.config', function (uiConfig) {
+angular.module("ui.directives").directive("uiReset", ["ui.config", function (uiConfig) {
   var resetValue = null;
   if (uiConfig.reset !== undefined)
       resetValue = uiConfig.reset;
   return {
-    require: 'ngModel',
+    require: "ngModel",
     link: function (scope, elm, attrs, ctrl) {
       var aElement;
       aElement = angular.element('<a class="ui-reset" />');
       elm.wrap('<span class="ui-resetwrap" />').after(aElement);
-      aElement.bind('click', function (e) {
+      aElement.bind("click", function (e) {
         e.preventDefault();
         scope.$apply(function () {
           if (attrs.uiReset)
@@ -786,27 +786,27 @@ angular.module('ui.directives').directive('uiReset', ['ui.config', function (uiC
 /**
  * Set a $uiRoute boolean to see if the current route matches
  */
-angular.module('ui.directives').directive('uiRoute', ['$location', '$parse', function ($location, $parse) {
+angular.module("ui.directives").directive("uiRoute", ["$location", "$parse", function ($location, $parse) {
   return {
-    restrict: 'AC',
+    restrict: "AC",
     compile: function(tElement, tAttrs) {
       var useProperty;
       if (tAttrs.uiRoute) {
-        useProperty = 'uiRoute';
+        useProperty = "uiRoute";
       } else if (tAttrs.ngHref) {
-        useProperty = 'ngHref';
+        useProperty = "ngHref";
       } else if (tAttrs.href) {
-        useProperty = 'href';
+        useProperty = "href";
       } else {
-        throw new Error('uiRoute missing a route or href property on ' + tElement[0]);
+        throw new Error("uiRoute missing a route or href property on " + tElement[0]);
       }
       return function ($scope, elm, attrs) {
-        var modelSetter = $parse(attrs.ngModel || attrs.routeModel || '$uiRoute').assign;
+        var modelSetter = $parse(attrs.ngModel || attrs.routeModel || "$uiRoute").assign;
         var watcher = angular.noop;
 
         // Used by href and ngHref
         function staticWatcher(newVal) {
-          if ((hash = newVal.indexOf('#')) > -1)
+          if ((hash = newVal.indexOf("#")) > -1)
             newVal = newVal.substr(hash + 1);
           watcher = function watchHref() {
             modelSetter($scope, ($location.path().indexOf(newVal) > -1));
@@ -815,36 +815,36 @@ angular.module('ui.directives').directive('uiRoute', ['$location', '$parse', fun
         }
         // Used by uiRoute
         function regexWatcher(newVal) {
-          if ((hash = newVal.indexOf('#')) > -1)
+          if ((hash = newVal.indexOf("#")) > -1)
             newVal = newVal.substr(hash + 1);
           watcher = function watchRegex() {
-            var regexp = new RegExp('^' + newVal + '$', ['i']);
+            var regexp = new RegExp("^" + newVal + "$", ["i"]);
             modelSetter($scope, regexp.test($location.path()));
           };
           watcher();
         }
 
         switch (useProperty) {
-          case 'uiRoute':
+          case "uiRoute":
             // if uiRoute={{}} this will be undefined, otherwise it will have a value and $observe() never gets triggered
             if (attrs.uiRoute)
               regexWatcher(attrs.uiRoute);
             else
-              attrs.$observe('uiRoute', regexWatcher);
+              attrs.$observe("uiRoute", regexWatcher);
             break;
-          case 'ngHref':
+          case "ngHref":
             // Setup watcher() every time ngHref changes
             if (attrs.ngHref)
               staticWatcher(attrs.ngHref);
             else
-              attrs.$observe('ngHref', staticWatcher);
+              attrs.$observe("ngHref", staticWatcher);
             break;
-          case 'href':
+          case "href":
             // Setup watcher()
             staticWatcher(attrs.href);
         }
 
-        $scope.$on('$routeChangeSuccess', function(){
+        $scope.$on("$routeChangeSuccess", function(){
           watcher();
         });
       }
@@ -858,8 +858,8 @@ angular.module('ui.directives').directive('uiRoute', ['$location', '$parse', fun
  * @param [offset] {int} optional Y-offset to override the detected offset.
  *   Takes 300 (absolute) or -300 or +300 (relative to detected)
  */
-angular.module('ui.directives').directive('uiScrollfix', ['$window', function ($window) {
-  'use strict';
+angular.module("ui.directives").directive("uiScrollfix", ["$window", function ($window) {
+  "use strict";
   return {
     link: function (scope, elm, attrs) {
       var top = elm.offset().top;
@@ -867,13 +867,13 @@ angular.module('ui.directives').directive('uiScrollfix', ['$window', function ($
         attrs.uiScrollfix = top;
       } else {
         // chartAt is generally faster than indexOf: http://jsperf.com/indexof-vs-chartat
-        if (attrs.uiScrollfix.charAt(0) === '-') {
+        if (attrs.uiScrollfix.charAt(0) === "-") {
           attrs.uiScrollfix = top - attrs.uiScrollfix.substr(1);
-        } else if (attrs.uiScrollfix.charAt(0) === '+') {
+        } else if (attrs.uiScrollfix.charAt(0) === "+") {
           attrs.uiScrollfix = top + parseFloat(attrs.uiScrollfix.substr(1));
         }
       }
-      angular.element($window).on('scroll.ui-scrollfix', function () {
+      angular.element($window).on("scroll.ui-scrollfix", function () {
         // if pageYOffset is defined use it, otherwise use other crap for IE
         var offset;
         if (angular.isDefined($window.pageYOffset)) {
@@ -882,10 +882,10 @@ angular.module('ui.directives').directive('uiScrollfix', ['$window', function ($
           var iebody = (document.compatMode && document.compatMode !== "BackCompat") ? document.documentElement : document.body;
           offset = iebody.scrollTop;
         }
-        if (!elm.hasClass('ui-scrollfix') && offset > attrs.uiScrollfix) {
-          elm.addClass('ui-scrollfix');
-        } else if (elm.hasClass('ui-scrollfix') && offset < attrs.uiScrollfix) {
-          elm.removeClass('ui-scrollfix');
+        if (!elm.hasClass("ui-scrollfix") && offset > attrs.uiScrollfix) {
+          elm.addClass("ui-scrollfix");
+        } else if (elm.hasClass("ui-scrollfix") && offset < attrs.uiScrollfix) {
+          elm.removeClass("ui-scrollfix");
         }
       });
     }
@@ -899,27 +899,27 @@ angular.module('ui.directives').directive('uiScrollfix', ['$window', function ($
  *     This change is so that you do not have to do an additional query yourself on top of Select2's own query
  * @params [options] {object} The configuration options passed to $.fn.select2(). Refer to the documentation
  */
-angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout', function (uiConfig, $timeout) {
+angular.module("ui.directives").directive("uiSelect2", ["ui.config", "$timeout", function (uiConfig, $timeout) {
   var options = {};
   if (uiConfig.select2) {
     angular.extend(options, uiConfig.select2);
   }
   return {
-    require: '?ngModel',
+    require: "?ngModel",
     compile: function (tElm, tAttrs) {
       var watch,
         repeatOption,
         repeatAttr,
-        isSelect = tElm.is('select'),
+        isSelect = tElm.is("select"),
         isMultiple = (tAttrs.multiple !== undefined);
 
       // Enable watching of the options dataset if in use
-      if (tElm.is('select')) {
-        repeatOption = tElm.find('option[ng-repeat], option[data-ng-repeat]');
+      if (tElm.is("select")) {
+        repeatOption = tElm.find("option[ng-repeat], option[data-ng-repeat]");
 
         if (repeatOption.length) {
-          repeatAttr = repeatOption.attr('ng-repeat') || repeatOption.attr('data-ng-repeat');
-          watch = jQuery.trim(repeatAttr.split('|')[0]).split(' ').pop();
+          repeatAttr = repeatOption.attr("ng-repeat") || repeatOption.attr("data-ng-repeat");
+          watch = jQuery.trim(repeatAttr.split("|")[0]).split(" ").pop();
         }
       }
 
@@ -939,21 +939,21 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
           // Watch the model for programmatic changes
           controller.$render = function () {
             if (isSelect) {
-              elm.select2('val', controller.$modelValue);
+              elm.select2("val", controller.$modelValue);
             } else {
               if (isMultiple) {
                 if (!controller.$modelValue) {
-                  elm.select2('data', []);
+                  elm.select2("data", []);
                 } else if (angular.isArray(controller.$modelValue)) {
-                  elm.select2('data', controller.$modelValue);
+                  elm.select2("data", controller.$modelValue);
                 } else {
-                  elm.select2('val', controller.$modelValue);
+                  elm.select2("val", controller.$modelValue);
                 }
               } else {
                 if (angular.isObject(controller.$modelValue)) {
-                  elm.select2('data', controller.$modelValue);
+                  elm.select2("data", controller.$modelValue);
                 } else {
-                  elm.select2('val', controller.$modelValue);
+                  elm.select2("val", controller.$modelValue);
                 }
               }
             }
@@ -965,9 +965,9 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
               if (!newVal) return;
               // Delayed so that the options have time to be rendered
               $timeout(function () {
-                elm.select2('val', controller.$viewValue);
+                elm.select2("val", controller.$viewValue);
                 // Refresh angular to remove the superfluous option
-                elm.trigger('change');
+                elm.trigger("change");
               });
             });
           }
@@ -976,7 +976,7 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
             // Set the view and model value and update the angular template manually for the ajax/multiple select2.
             elm.bind("change", function () {
               scope.$apply(function () {
-                controller.$setViewValue(elm.select2('data'));
+                controller.$setViewValue(elm.select2("data"));
               });
             });
 
@@ -992,8 +992,8 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
           }
         }
 
-        attrs.$observe('disabled', function (value) {
-          elm.select2(value && 'disable' || 'enable');
+        attrs.$observe("disabled", function (value) {
+          elm.select2(value && "disable" || "enable");
         });
 
         if (attrs.ngMultiple) {
@@ -1010,7 +1010,7 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
           elm.select2(opts);
           // Not sure if I should just check for !isSelect OR if I should check for 'tags' key
           if (!opts.initSelection && !isSelect)
-            controller.$setViewValue(elm.select2('data'));
+            controller.$setViewValue(elm.select2("data"));
         });
       };
     }
@@ -1025,13 +1025,13 @@ angular.module('ui.directives').directive('uiSelect2', ['ui.config', '$timeout',
  *
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
-angular.module('ui.directives').directive('uiShow', [function () {
+angular.module("ui.directives").directive("uiShow", [function () {
   return function (scope, elm, attrs) {
     scope.$watch(attrs.uiShow, function (newVal, oldVal) {
       if (newVal) {
-        elm.addClass('ui-show');
+        elm.addClass("ui-show");
       } else {
-        elm.removeClass('ui-show');
+        elm.removeClass("ui-show");
       }
     });
   };
@@ -1045,13 +1045,13 @@ angular.module('ui.directives').directive('uiShow', [function () {
  *
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
-  .directive('uiHide', [function () {
+  .directive("uiHide", [function () {
   return function (scope, elm, attrs) {
     scope.$watch(attrs.uiHide, function (newVal, oldVal) {
       if (newVal) {
-        elm.addClass('ui-hide');
+        elm.addClass("ui-hide");
       } else {
-        elm.removeClass('ui-hide');
+        elm.removeClass("ui-hide");
       }
     });
   };
@@ -1066,13 +1066,13 @@ angular.module('ui.directives').directive('uiShow', [function () {
  *
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
-  .directive('uiToggle', [function () {
+  .directive("uiToggle", [function () {
   return function (scope, elm, attrs) {
     scope.$watch(attrs.uiToggle, function (newVal, oldVal) {
       if (newVal) {
-        elm.removeClass('ui-hide').addClass('ui-show');
+        elm.removeClass("ui-hide").addClass("ui-show");
       } else {
-        elm.removeClass('ui-show').addClass('ui-hide');
+        elm.removeClass("ui-show").addClass("ui-hide");
       }
     });
   };
@@ -1083,10 +1083,10 @@ angular.module('ui.directives').directive('uiShow', [function () {
 
  @param [ui-sortable] {object} Options to pass to $.fn.sortable() merged onto ui.config
 */
-angular.module('ui.directives').directive('uiSortable', [
-  'ui.config', function(uiConfig) {
+angular.module("ui.directives").directive("uiSortable", [
+  "ui.config", function(uiConfig) {
     return {
-      require: '?ngModel',
+      require: "?ngModel",
       link: function(scope, element, attrs, ngModel) {
         var onReceive, onRemove, onStart, onUpdate, opts, _receive, _remove, _start, _update;
 
@@ -1194,10 +1194,10 @@ angular.module('ui.directives').directive('uiSortable', [
 /**
  * Binds a TinyMCE widget to <textarea> elements.
  */
-angular.module('ui.directives').directive('uiTinymce', ['ui.config', function (uiConfig) {
+angular.module("ui.directives").directive("uiTinymce", ["ui.config", function (uiConfig) {
   uiConfig.tinymce = uiConfig.tinymce || {};
   return {
-    require: 'ngModel',
+    require: "ngModel",
     link: function (scope, elm, attrs, ngModel) {
       var expression,
         options = {
@@ -1261,11 +1261,11 @@ angular.module('ui.directives').directive('uiTinymce', ['ui.config', function (u
  * If an object literal is passed a key denotes a validation error key while a value should be a validator function.
  * In both cases validator function should take a value to validate as its argument and should return true/false indicating a validation result.
  */
-angular.module('ui.directives').directive('uiValidate', function () {
+angular.module("ui.directives").directive("uiValidate", function () {
 
   return {
-    restrict: 'A',
-    require: 'ngModel',
+    restrict: "A",
+    require: "ngModel",
     link: function (scope, elm, attrs, ctrl) {
       var validateFn, watch, validators = {},
         validateExpr = scope.$eval(attrs.uiValidate);
@@ -1326,7 +1326,7 @@ angular.module('ui.directives').directive('uiValidate', function () {
  * @example: 'Records $0 to $1 out of $2 total'.format(['10', '20', '3000'])
  * @example: '$0 agrees to all mentions $0 makes in the event that $0 hits a tree while $0 is driving drunk'.format('Bob')
  */
-angular.module('ui.filters').filter('format', function(){
+angular.module("ui.filters").filter("format", function(){
   return function(value, replace) {
     if (!value) {
       return value;
@@ -1336,9 +1336,9 @@ angular.module('ui.filters').filter('format', function(){
       return target;
     }
     if (!angular.isArray(replace) && !angular.isObject(replace)) {
-      return target.split('$0').join(replace);
+      return target.split("$0").join(replace);
     }
-    token = angular.isArray(replace) && '$' || ':';
+    token = angular.isArray(replace) && "$" || ":";
 
     angular.forEach(replace, function(value, key){
       target = target.split(token+key).join(value);
@@ -1353,15 +1353,15 @@ angular.module('ui.filters').filter('format', function(){
  * @param search {string} needle to search for
  * @param [caseSensitive] {boolean} optional boolean to use case-sensitive searching
  */
-angular.module('ui.filters').filter('highlight', function () {
+angular.module("ui.filters").filter("highlight", function () {
   return function (text, search, caseSensitive) {
     if (search || angular.isNumber(search)) {
       text = text.toString();
       search = search.toString();
       if (caseSensitive) {
-        return text.split(search).join('<span class="ui-match">' + search + '</span>');
+        return text.split(search).join('<span class="ui-match">' + search + "</span>");
       } else {
-        return text.replace(new RegExp(search, 'gi'), '<span class="ui-match">$&</span>');
+        return text.replace(new RegExp(search, "gi"), '<span class="ui-match">$&</span>');
       }
     } else {
       return text;
@@ -1378,7 +1378,7 @@ angular.module('ui.filters').filter('highlight', function () {
  *          {{ 'Here Is my_phoneNumber' | inflector:'underscore' }} => here_is_my_phone_number
  *          {{ 'Here Is my_phoneNumber' | inflector:'variable' }} => hereIsMyPhoneNumber
  */
-angular.module('ui.filters').filter('inflector', function () {
+angular.module("ui.filters").filter("inflector", function () {
   function ucwords(text) {
     return text.replace(/^([a-z])|\s+([a-z])/g, function ($1) {
       return $1.toUpperCase();
@@ -1393,20 +1393,20 @@ angular.module('ui.filters').filter('inflector', function () {
 
   var inflectors = {
     humanize: function (value) {
-      return ucwords(breakup(value, ' ').split('_').join(' '));
+      return ucwords(breakup(value, " ").split("_").join(" "));
     },
     underscore: function (value) {
-      return value.substr(0, 1).toLowerCase() + breakup(value.substr(1), '_').toLowerCase().split(' ').join('_');
+      return value.substr(0, 1).toLowerCase() + breakup(value.substr(1), "_").toLowerCase().split(" ").join("_");
     },
     variable: function (value) {
-      value = value.substr(0, 1).toLowerCase() + ucwords(value.split('_').join(' ')).substr(1).split(' ').join('');
+      value = value.substr(0, 1).toLowerCase() + ucwords(value.split("_").join(" ")).substr(1).split(" ").join("");
       return value;
     }
   };
 
   return function (text, inflector, separator) {
     if (inflector !== false && angular.isString(text)) {
-      inflector = inflector || 'humanize';
+      inflector = inflector || "humanize";
       return inflectors[inflector](text);
     } else {
       return text;
@@ -1421,7 +1421,7 @@ angular.module('ui.filters').filter('inflector', function () {
  if the key === false then no filtering will be performed
  * @return {array}
  */
-angular.module('ui.filters').filter('unique', function () {
+angular.module("ui.filters").filter("unique", function () {
 
   return function (items, filterOn) {
 

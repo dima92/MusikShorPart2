@@ -9,14 +9,10 @@ using System.Web.Http;
 using BLL.Core.Identity;
 using DAL.Core.ModelDTO;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using ShopOfMusicalInstruments.Core.Providers;
 using ShopOfMusicalInstruments.Models;
-using ShopOfMusicalInstruments.Results;
 
 namespace ShopOfMusicalInstruments.Core.Controllers 
 {
@@ -69,45 +65,6 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             return Ok();
         }
 
-        //// GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
-        //[Route("ManageInfo")]
-        //public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
-        //{
-        //    IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-        //    if (user == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
-
-        //    foreach (IdentityUserLogin linkedAccount in user.Logins)
-        //    {
-        //        logins.Add(new UserLoginInfoViewModel
-        //        {
-        //            LoginProvider = linkedAccount.LoginProvider,
-        //            ProviderKey = linkedAccount.ProviderKey
-        //        });
-        //    }
-
-        //    if (user.PasswordHash != null)
-        //    {
-        //        logins.Add(new UserLoginInfoViewModel
-        //        {
-        //            LoginProvider = LocalLoginProvider,
-        //            ProviderKey = user.UserName,
-        //        });
-        //    }
-
-        //    return new ManageInfoViewModel
-        //    {
-        //        LocalLoginProvider = LocalLoginProvider,
-        //        Email = user.UserName,
-        //        Logins = logins,
-        //        ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
-        //    };
-        //}
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
@@ -483,7 +440,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
 
                 if (strengthInBits % bitsPerByte != 0)
                 {
-                    throw new ArgumentException("Значение strengthInBits должно нацело делиться на 8.", "strengthInBits");
+                    throw new ArgumentException("Значение strengthInBits должно нацело делиться на 8.", nameof(strengthInBits));
                 }
 
                 int strengthInBytes = strengthInBits / bitsPerByte;

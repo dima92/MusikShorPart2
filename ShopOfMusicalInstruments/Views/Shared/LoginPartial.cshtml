@@ -1,0 +1,21 @@
+﻿
+@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+
+    if (User.IsInRole("admin"))
+    {
+        <h4> <a href="" id="userInfo">Здравствуйте @User.Identity.GetUserName()!</a></h4>
+        <h4>статус : admin <a href="" id="buttonExit">Выйти</a></h4>
+    }
+    else
+    {
+
+        <input id="idUser" type="hidden">
+        <h3 id="link"> <a href="" id="userInfo">Здравствуйте @User.Identity.GetUserName()!</a></h3>
+        <h4>статус : user <a href="" id="buttonExit">Выйти</a></h4>
+
+    }
+
+}

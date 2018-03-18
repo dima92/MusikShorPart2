@@ -34,6 +34,10 @@ namespace BLL.Core.BLL_Core.Repository
             {
                 result.Window = false;
             }
+            else
+            {
+                result.Window = true;
+            }
             result.DateCreate = DateTime.Now;
             result.DateDelete = null;
             result.DateUpdate = null;
@@ -48,6 +52,10 @@ namespace BLL.Core.BLL_Core.Repository
                 if (result.NumberProduct == 0)
                 {
                     result.Window = false;
+                }
+                else
+                {
+                    result.Window = true;
                 }
                 result.DateDelete = null;
                 _dalFactory.Product.UpdateVoid(result, result.Id);

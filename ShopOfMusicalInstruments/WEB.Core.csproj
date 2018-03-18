@@ -398,6 +398,7 @@
     <Content Include="Content\image\7.jpg" />
     <Content Include="Content\image\8.jpg" />
     <Content Include="Content\image\images.png" />
+    <Content Include="Content\image\карзина.jpg" />
     <Content Include="Content\image\фон-для-сайта-1024x576.jpg" />
     <Content Include="Content\spinner.gif" />
     <Content Include="Content\toaster.css" />
@@ -1284,6 +1285,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Views\Shared\LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Core\BLL.Core.csproj">

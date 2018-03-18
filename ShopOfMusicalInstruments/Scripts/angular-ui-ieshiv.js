@@ -36,9 +36,9 @@
     var dashed = str.replace(/([A-Z])/g, function ($1) {
       return " " + $1.toLowerCase();
     });
-    var tokens = dashed.split(' ');
+    var tokens = dashed.split(" ");
     var ns = tokens[0];
-    var dirname = tokens.slice(1).join('-');
+    var dirname = tokens.slice(1).join("-");
 
     // this is finite list and it seemed senseless to create a custom method
     result.push(ns + ":" + dirname);

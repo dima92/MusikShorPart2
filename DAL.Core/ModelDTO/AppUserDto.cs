@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
+
 namespace DAL.Core.ModelDTO
 {
     public class AppUserDto : IUser
@@ -25,6 +26,11 @@ namespace DAL.Core.ModelDTO
         {
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
             return userIdentity;
+        }
+
+        public static implicit operator Microsoft.AspNet.Identity.EntityFramework.IdentityUser(AppUserDto v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,7 +4,7 @@
     function countryService($cookies, $http, $rootScope, $q) {
         this.getAll = function () {
             var deferred = $q.defer();
-            $http.get('api/Countries')
+            $http.get("api/Countries")
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }).catch(function onError(response) {

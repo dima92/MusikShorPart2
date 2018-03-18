@@ -4,7 +4,7 @@
     function numberstringService($cookies, $http, $rootScope, $q) {
         this.getAll = function() {
             var deferred = $q.defer();
-            $http.get('api/NumberStrings')
+            $http.get("api/NumberStrings")
                 .then(function(response) {
                     deferred.resolve(response.data);
                 }).catch(function onError(response) {
