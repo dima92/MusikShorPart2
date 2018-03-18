@@ -318,6 +318,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            var r = User.Identity.Name;
             model.ConfirmPassword = model.Password;
             if (!ModelState.IsValid)
             {
@@ -332,6 +333,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             {
                 return GetErrorResult(result);
             }
+            var rr = User.Identity.Name;
             await SignInAsync(user, true);
 
             return Ok();
